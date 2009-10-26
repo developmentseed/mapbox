@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- DC NIGHTVISION -->
+
+<!-- See the README for information on where to obtain the required shapefiles -->
+
+<!DOCTYPE Map[
+  <!ENTITY srs_osm "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs">
+  <!ENTITY srs_wgs84 "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+  <!ENTITY srs_dc "+proj=lcc +lat_1=38.3 +lat_2=39.45 +lat_0=37.66666666666666 +lon_0=-77 +x_0=400000 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+]>
+
+<Map srs="&srs_osm;">
+
+  <Stylesheet src="dc-nightvision.mss" />
+  
+  <Layer class="boundary outline outer" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./DCBndyPly/DCGIS_DCBndyPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="boundary fill" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./DCBndyPly/DCGIS_DCBndyPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="park" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./ParkPly/ParkPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="water major" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./WaterPly/WaterPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="building outline outer" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./BldgPly/BldgPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="building outline inner" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./BldgPly/BldgPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="building fill" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./BldgPly/BldgPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="water minor" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./WaterPly/WaterPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="elevation line minor" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./TopoLn/DCGIS_TopoLn</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="elevation line major" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./TopoLn/DCGIS_TopoLn</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="boundary outline inner" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./DCBndyPly/DCGIS_DCBndyPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="road outline inner" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./RoadPly/RoadPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="road outline outer" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./RoadPly/RoadPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="road fill" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./RoadPly/RoadPly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="metro point" srs="&srs_dc;">
+    <Datasource>
+      <Parameter name="file">./MetroStnPt/MetroStnPt</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="road label" srs="&srs_wgs84;">
+    <Datasource>
+      <Parameter name="file">./district_of_columbia.shapefiles/district_of_columbia_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
