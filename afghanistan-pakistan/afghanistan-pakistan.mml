@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- AFGHANISTAN-PAKISTAN ROADS -->
+
+<!-- See the README for information on where to obtain the required shapefiles -->
+
+<!DOCTYPE Map[
+    <!ENTITY map_srs "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs">
+    <!ENTITY layer_srs "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+]>
+
+<Map srs="&map_srs;">
+
+  <Stylesheet src="afghanistan-pakistan.mss" />
+  
+  <Layer id="pakistan_admin_fill" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pak_ad1_pfrc_ply</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="natural" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pakistan_natural</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer class="natural" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/afghanistan_natural</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer id="afghanistan_water" class="water" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/afghanistan_water</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="pakistan_water" class="water" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pakistan_water</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="pakistan_admin_outline" class="borders provinces outline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pak_ad1_pfrc_ply</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+    
+  <Layer id="afghanistan_admin_outline" class="borders provinces outline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/admin2_poly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="pakistan_admin" class="borders provinces inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pak_ad1_pfrc_ply</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+    
+  <Layer id="afghanistan_admin" class="borders provinces inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/admin2_poly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+
+  <!-- I need to figure out where this data came from -->
+  <!--
+  <Layer id="afgpak_extent" class="borders" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afgpak.shapefiles/afgh_pak_total_extent</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  -->
+  
+  <Layer id="pakistan_highway_outline" class="roads outline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pakistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="afghanistan_highway_outline" class="roads outline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/afghanistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="pakistan_highway_minor" class="roads minor inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pakistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="afghanistan_highway_minor" class="roads minor inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/afghanistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="pakistan_highway_secondary" class="roads secondary inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pakistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="afghanistan_highway_secondary" class="roads secondary inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/afghanistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="pakistan_highway_major" class="roads major inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pakistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="afghanistan_highway_major" class="roads major inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/afghanistan_highway</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="pakistan_admin_labels" class="labels provinces" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./pakistan.shapefiles/pak_ad1_pfrc_ply</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+    
+  <Layer id="afghanistan_admin_labels" class="labels provinces" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afghanistan.shapefiles/admin2_poly</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="afgpak_border" class="borders outline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afgpak.shapefiles/afgh_pak_border</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+  
+  <Layer id="afgpak_border_inline" class="borders inline" srs="&layer_srs;">
+    <Datasource>
+      <Parameter name="file">./afgpak.shapefiles/afgh_pak_border</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+</Map>
