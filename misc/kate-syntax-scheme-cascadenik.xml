@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<!--
+    
+    This is a Cascadenik (.mss) syntax highlighting definition for Kate,
+    the KDE Advanced Text Editor.
+    
+    It is a quick and dirty hack of the default CSS syntax definition, 
+    and could use some further refining. However, it should make editing
+    Cascadenik stylesheets a little easier (if you happen to use Kate).
+    
+    To use it, save it as ~/.kde4/share/apps/katepart/syntax/cascadenik.xml
+    
+    Syntax Reference: http://code.google.com/p/mapnik-utils/wiki/CascadenikProperties
+
+-->
+
+<language name="Cascadenik" version="0.1" kateversion="2.4" section="Markup" extensions="*.mss" mimetype="text/x-cascadenik" author="AJ Ashton (aj@developmentseed.org)" license="LGPL">
+
+  <highlighting>
+    <list name="properties">
+      <!-- Map -->
+      <item> map-bgcolor </item>
+      <!-- Polygon Symbolizer -->
+      <item> polygon-fill </item>
+      <item> polygon-opacity </item>
+      <!-- Line Symbolizer -->
+      <item> line-color </item>
+      <item> line-width </item>
+      <item> line-opacity </item>
+      <item> line-join </item>
+      <item> line-cap </item>
+      <item> line-dasharray </item>
+      <!-- Outline Line Symbolizer -->
+      <item> outline-color </item>
+      <item> outline-width </item>
+      <item> outline-opacity </item>
+      <item> outline-join </item>
+      <item> outline-cap </item>
+      <item> outline-dasharray </item>
+      <!-- Inline Line Symbolizer -->
+      <item> inline-color </item>
+      <item> inline-width </item>
+      <item> inline-opacity </item>
+      <item> inline-join </item>
+      <item> inline-cap </item>
+      <item> inline-dasharray </item>
+      <!-- Text Symbolizer -->
+      <item> text-face-name </item>
+      <item> text-size </item>
+      <item> text-ratio </item>
+      <item> text-wrap-width </item>
+      <item> text-spacing </item>
+      <item> text-label-position-tolerance </item>
+      <item> text-max-char-angle-delta </item>
+      <item> text-fill </item>
+      <item> text-halo-fill </item>
+      <item> text-halo-radius </item>
+      <item> text-dx </item>
+      <item> text-dy </item>
+      <item> text-avoid-edges </item>
+      <item> text-min-distance </item>
+      <item> text-allow-overlap </item>
+      <item> text-placement </item>
+      <!-- Point Symbolizer -->
+      <item> point-file </item>
+      <item> point-width </item>
+      <item> point-height </item>
+      <item> point-allow-overlap </item>
+      <!-- Polygon Pattern Symbolizer -->
+      <item> polygon-pattern-file </item>
+      <item> polygon-pattern-width </item>
+      <item> polygon-pattern-height </item>
+      <!-- Line Pattern Symbolizer -->
+      <item> line-pattern-file </item>
+      <item> line-pattern-width </item>
+      <item> line-pattern-height </item>
+      <!-- Shield Symbolizer -->
+      <item> shield-face-name </item>
+      <item> shield-size </item>
+      <item> shield-fill </item>
+      <item> shield-min-distance </item>
+      <item> shield-file </item>
+      <item> shield-width </item>
+      <item> shield-height </item>
+    </list>
+
+    <list name="types">
+      <item> bevel </item>
+      <item> butt </item>
+      <item> false </item>
+      <item> line </item>
+      <item> miter </item>
+      <item> point </item>
+      <item> round </item>
+      <item> square </item>
+      <item> transparent </item>
+      <item> true </item>
+    </list>
+
+    <list name="paren">
+      <item> url </item>
+    </list>
+
+    <contexts>
+      <context attribute="Normal Text" lineEndContext="#stay" name="Base">
+        <LineContinue/>
+        <DetectSpaces/>
+	<IncludeRules context="FindRuleSets" />
+      </context>
+
+      <!-- to be included -->
+      <!-- finds rules and detects nesting -->
+      <context attribute="Normal Text" lineEndContext="#stay" name="FindRuleSets">
+        <RegExpr attribute="Media" context="Media" String="@media\b" />
+	<RegExpr attribute="At Rule" context="Import" String="@import\b" />
+	<RegExpr attribute="At Rule" context="#stay" String="@(font-face|charset)\b" />
+        <DetectChar attribute="Property" context="RuleSet" char="{" beginRegion="ruleset" />
+        <!--parse selectors-->
+	<DetectChar attribute="Selector Attr" context="SelAttr" char="[" />
+	<RegExpr attribute="Selector Id" context="#stay" String="#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*" />
+	<RegExpr attribute="Selector Class" context="#stay" String="\.([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*" />
+	<RegExpr attribute="Selector Pseudo" context="#stay" String=":lang\([\w_-]+\)" />
+	<DetectChar attribute="Selector Pseudo" context="SelPseudo" char=":" />
+	<IncludeRules context="FindStrings" />
+	<IncludeRules context="FindComments" />
+      </context>
+
+      <!-- finds arguments to properties -->
+      <context attribute="Normal Text" lineEndContext="#stay" name="FindValues">
+	<RegExpr attribute="Value" context="#stay" String="[-+]?[0-9.]+(em|ex|px|in|cm|mm|pt|pc|deg|rad|grad|ms|s|Hz|kHz)\b" />
+	<RegExpr attribute="Value" context="#stay" String="[-+]?[0-9.]+[%]?" />
+	<RegExpr attribute="Normal Text" context="#stay" String="[\w\-]+" />
+      </context>
+
+      <!-- finds strings -->
+      <context attribute="Normal Text" lineEndContext="#stay" name="FindStrings">
+	<DetectChar attribute="String" context="StringDQ" char="&quot;" />
+	<DetectChar attribute="String" context="StringSQ" char="'" />
+      </context>
+
+      <!-- finds comments -->
+      <context attribute="Normal Text" lineEndContext="#stay" name="FindComments">
+        <RegExpr attribute="Region Marker" context="#stay" String="/\*BEGIN.*\*/" beginRegion="UserDefined" />
+        <RegExpr attribute="Region Marker" context="#stay" String="/\*END.*\*/" endRegion="UserDefined" />
+        <Detect2Chars attribute="Comment" context="Comment" char="/" char1="*" beginRegion="comment" />
+      </context>
+
+      <!-- other contexts -->
+      <context attribute="Normal Text" lineEndContext="#stay" name="Media">
+        <DetectChar attribute="Media" context="Media2" char="{" beginRegion="media" />
+	<keyword attribute="Media" context="#stay" String="mediatypes" />
+	<DetectChar attribute="Media" context="#stay" char="," />
+	<IncludeRules context="FindComments" />
+	<RegExpr attribute="Error" context="#stay" String="\S+" />
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="Media2">
+        <DetectChar attribute="Media" context="#pop#pop" char="}" endRegion="media" />
+	<IncludeRules context="FindRuleSets" />
+      </context>
+
+      <context attribute="Selector Attr" lineEndContext="#stay" name="SelAttr">
+	<DetectChar attribute="Selector Attr" context="#pop" char="]" />
+	<IncludeRules context="FindStrings" />
+      </context>
+
+      <context attribute="Selector Pseudo" lineEndContext="#pop" name="SelPseudo"
+      		fallthrough="true" fallthroughContext="#pop">
+	<keyword attribute="Selector Pseudo" context="#pop" String="pseudoclasses" />
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="Import">
+      	<DetectChar attribute="At Rule" context="#pop" char=";" />
+	<keyword attribute="Media" context="#stay" String="mediatypes" />
+	<IncludeRules context="FindValues" />
+	<IncludeRules context="FindStrings" />
+	<IncludeRules context="FindComments" />
+      </context>
+
+      <context attribute="Comment" lineEndContext="#stay" name="Comment">
+	<DetectSpaces/>
+        <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="comment" />
+        <IncludeRules context="##Alerts" />
+	<DetectIdentifier/>
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="RuleSet">
+        <DetectChar attribute="Property" context="#pop" char="}" endRegion="ruleset" />
+        <keyword attribute="Property" context="Rule" String="properties" />
+	<RegExpr attribute="Unknown Property" context="Rule" String="-?[A-Za-z_-]+(?=\s*:)" />
+	<IncludeRules context="FindComments" />
+	<RegExpr attribute="Error" context="#stay" String="\S" />
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="Rule">
+      	<DetectChar attribute="Property" context="Rule2" char=":" />
+	<RegExpr attribute="Error" context="#stay" String="\S" />
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="Rule2">
+      	<DetectChar attribute="Property" context="#pop#pop" char=";" />
+	<DetectChar attribute="Property" context="#pop#pop#pop" char="}" endRegion="ruleset" />
+        <!-- parse property values -->
+	<keyword attribute="Value" context="#stay" String="types" />
+	<keyword attribute="Value" context="#stay" String="colors" />
+	<RegExpr attribute="Value" context="#stay" String="#([0-9A-Fa-f]{3}){1,4}\b" />
+	<keyword attribute="Value" context="PropParen" String="paren" />
+	<RegExpr attribute="Important" context="#stay" String="!important\b" />
+	<IncludeRules context="FindValues" />
+	<IncludeRules context="FindStrings" />
+	<IncludeRules context="FindComments" />
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="PropParen">
+        <DetectChar attribute="Value" context="PropParen2" char="(" />
+	<IncludeRules context="FindComments" />
+	<RegExpr attribute="Error" context="#stay" String="\S" />
+      </context>
+
+      <context attribute="Normal Text" lineEndContext="#stay" name="PropParen2">
+        <DetectChar attribute="Value" context="#pop#pop" char=")" />
+	<IncludeRules context="FindValues" />
+	<IncludeRules context="FindStrings" />
+	<IncludeRules context="FindComments" />
+      </context>
+
+      <!-- string contexts -->
+      <context attribute="String" lineEndContext="#stay" name="StringDQ">
+        <DetectChar attribute="String" context="#pop" char="&quot;" />
+        <IncludeRules context="InsideString" />
+      </context>
+
+      <context attribute="String" lineEndContext="#stay" name="StringSQ">
+        <DetectChar attribute="String" context="#pop" char="'" />
+        <IncludeRules context="InsideString" />
+      </context>
+
+      <context attribute="String" lineEndContext="#stay" name="InsideString">
+        <RegExpr attribute="String" context="#stay" String="\\[&quot;']" />
+	<DetectIdentifier/>
+      </context>
+
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Property"  defStyleNum="dsKeyword"/>
+      <itemData name="Unknown Property"  defStyleNum="dsKeyword" italic="1"/>
+      <itemData name="String"  defStyleNum="dsString" />
+      <itemData name="Value"  defStyleNum="dsDataType" />
+      <itemData name="Important" defStyleNum="dsKeyword" />
+      <itemData name="Selector Attr" defStyleNum="dsChar" />
+      <itemData name="Selector Id"  defStyleNum="dsFloat" bold="1"/>
+      <itemData name="Selector Class"  defStyleNum="dsFloat" />
+      <itemData name="Selector Pseudo"  defStyleNum="dsDecVal" />
+      <itemData name="Comment" defStyleNum="dsComment" />
+      <itemData name="Region Marker" defStyleNum="dsRegionMarker"/>
+      <itemData name="Alert" defStyleNum="dsAlert"/>
+      <itemData name="Error" defStyleNum="dsError"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <keywords casesensitive="0" weakDeliminator="-%"/>
+    <comments>
+      <comment name="multiLine" start="/*" end="*/" />
+    </comments>
+  </general>
+</language>
