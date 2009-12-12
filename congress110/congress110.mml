@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE Map[
+    <!-- projections -->
+    <!ENTITY srs_osm "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs">
+    <!ENTITY srs_wgs84 "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+ 
+    <!-- database settings -->
+    <!ENTITY host "ec2-174-129-58-135.compute-1.amazonaws.com">
+    <!ENTITY port "5433">
+    <!ENTITY user "gis">
+    <!ENTITY password "sunlight">
+    <!ENTITY dbname "gis">
+]>
+
+<Map srs="&srs_osm;">
+
+  <Stylesheet src="congress110.mss" />
+  
+  <Layer class="world" srs="&srs_wgs84;" status="1">
+    <Datasource>
+      <Parameter name="file">../world-light/country-borders-edit</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+
+  
+  <Layer class="district" srs="&srs_wgs84;">
+    <Datasource>
+      <Parameter name="file">districts110/cd99_110</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
