@@ -16,7 +16,13 @@
 
 -->
 
-<language name="Cascadenik" version="0.1" kateversion="2.4" section="Markup" extensions="*.mss" mimetype="text/x-cascadenik" author="AJ Ashton (aj@developmentseed.org)" license="LGPL">
+<language name="Cascadenik" section="Markup"
+  version="0.2" kateversion="2.4"
+  indenter="cstyle"
+  extensions="*.mss"
+  mimetype="text/x-cascadenik"
+  author="AJ Ashton (aj@developmentseed.org)"
+  license="LGPL">
 
   <highlighting>
     <list name="properties">
