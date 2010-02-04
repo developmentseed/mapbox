@@ -17,7 +17,7 @@
 -->
 
 <language name="Cascadenik" section="Markup"
-  version="0.2" kateversion="2.4"
+  version="0.3" kateversion="2.4"
   indenter="cstyle"
   extensions="*.mss"
   mimetype="text/x-cascadenik"
@@ -30,6 +30,7 @@
       <item> map-bgcolor </item>
       <!-- Polygon Symbolizer -->
       <item> polygon-fill </item>
+      <item> polygon-gamma </item>
       <item> polygon-opacity </item>
       <!-- Line Symbolizer -->
       <item> line-color </item>
@@ -53,6 +54,8 @@
       <item> inline-cap </item>
       <item> inline-dasharray </item>
       <!-- Text Symbolizer -->
+      <item> text-character-spacing </item>
+      <item> text-line-spacing </item>
       <item> text-face-name </item>
       <item> text-size </item>
       <item> text-ratio </item>
@@ -83,8 +86,11 @@
       <item> line-pattern-width </item>
       <item> line-pattern-height </item>
       <!-- Shield Symbolizer -->
+      <item> shield-character-spacing </item>
+      <item> shield-line-spacing </item>
       <item> shield-face-name </item>
       <item> shield-size </item>
+      <item> shield-spacing </item>
       <item> shield-fill </item>
       <item> shield-min-distance </item>
       <item> shield-file </item>
