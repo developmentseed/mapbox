@@ -1,4 +1,4 @@
-# OSM Stock Map by DevelopmentSeed
+# OSM Bright by DevelopmentSeed
 
 *A sensible starting point for quickly making beatiful maps based on an 
 "out-of-the-box" OpenStreetMap database.*
