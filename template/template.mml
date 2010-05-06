@@ -75,7 +75,7 @@
   </Style>
   
   <Layer class="gdal" srs="&srs900913;">
-    <Stylename>GDAL Layer</Stylename>
+    <StyleName>GDAL Layer</StyleName>
     <Datasource>
       <Parameter name="file">dir/geo.tif</Parameter>
       <Parameter name="format">tiff</Parameter>
