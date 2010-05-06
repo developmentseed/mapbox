@@ -74,7 +74,7 @@
     </Rule>
   </Style>
   
-  <Layer class="gdal" srs="&srs900913">
+  <Layer class="gdal" srs="&srs900913;">
     <Stylename>GDAL Layer</Stylename>
     <Datasource>
       <Parameter name="file">dir/geo.tif</Parameter>
