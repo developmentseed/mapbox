@@ -4,12 +4,14 @@
  * ======================================================== */
 
 Map {
-  map-bgcolor: #f5f3e6;
+/*  map-bgcolor: #F5EED6;*/ 
+	map-bgcolor: transparent;
 }
 
-.roads {
+.border,
+.road {
   line-cap: round; /* butt|round|square */
-  line-join: round; /* miter|round|bevel */
+  line-join: miter; /* miter|round|bevel */
 }
 
 /* == AREAS =============================================== */
@@ -21,293 +23,398 @@ Map {
   polygon-pattern-file: url(./res/stripes-red-diagonal-big.png);
 }
 
-.natural[zoom>=9] { 
-  polygon-pattern-file: url(./res/natural.png); 
-}
+.natural[zoom>=9] { polygon-pattern-file: url(./res/natural.png); }
 
-.water[zoom>=7] { 
-  polygon-fill: #a4c0e4; 
-}
-
-.water[zoom>=9] { 
-  line-color: #bfd9ff; 
-  line-width: 0.5; 
-}
+.water { polygon-fill: #1c7b78; }
 
 
 /* == BORDERS ============================================= */
-.borders { 
-  line-color: #8F6D9C; 
-  line-opacity: 0.5;
-  line-width: 0.5;  
+
+/* ---- National ------------------------------------------ */
+.border.country           { line-color: #666; line-opacity: 0.3; outline-color: #666; outline-opacity: 0.1; }
+
+.bodder.country[zoom<=2]  { line-width: 0.5; }
+
+.border.country[zoom=3]   { line-width: 0.5; outline-width: 0.5; }
+
+.border.country[zoom=4]   { line-width: 0.7; outline-width: 0.7; }
+
+.border.country[zoom=5]   { line-width: 1.0; outline-width: 1.0; }
+
+.border.country[zoom=6]   { line-width: 1.1; outline-width: 1.1; }
+
+.border.country[zoom=7]   { line-width: 1.2; outline-width: 1.2; }
+
+.border.country[zoom=8]   { line-width: 1.3; outline-width: 1.3; }
+
+.border.country[zoom=9]   { line-width: 1.4; outline-width: 1.4; }
+
+.border.country[zoom=10]  { line-width: 1.5; outline-width: 1.5; }
+
+.border.country[zoom=11]  { line-width: 1.6; outline-width: 1.6; }
+
+.border.country[zoom=12]  { line-width: 1.7; outline-width: 1.7; }
+
+.border.country[zoom=13]  { line-width: 1.8; outline-width: 1.8; }
+
+.border.country[zoom=14]  { line-width: 1.9; outline-width: 1.9; }
+
+.border.country[zoom>=15] { line-width: 2.0; outline-width: 2.0; }
+
+
+/* ---- Provincial ---------------------------------------- */
+.border.province[zoom>=5] { line-color: #666; outline-color: #fff; outline-opacity: 0.3; }
+
+.border.province[zoom=5] { line-width: 0.4; outline-width: 1.5; }
+
+.border.province[zoom=6] { line-width: 0.5; outline-width: 1.5; }
+
+.border.province[zoom=7] { line-width: 0.6; outline-width: 1.5; }
+
+.border.province[zoom=8] { line-width: 0.7; outline-width: 1.5; }
+
+.border.province[zoom=9] { line-width: 0.8; outline-width: 1.5; }
+
+/* ---- District ------------------------------------------ */
+.border.district[zoom>=8] {
+  line-color: #000;
+	line-opacity: 0.1;
 }
 
-.borders.provinces.outline[zoom=10] { 
-  line-opacity: 0.1;
-  line-width: 4;  
+.border.district[zoom>=8]  { line-width: 1.0; }
+
+/*.border.district[zoom=9]  { line-width: 1.1; }
+
+.border.district[zoom=10] { line-width: 1.2; }
+
+.border.district[zoom=11] { line-width: 1.3; }
+
+.border.district[zoom=12] { line-width: 1.4; }
+
+.border.district[zoom>12] { line-width: 1.5; }
+
+
+/* == BUILDINGS =========================================== */
+
+.building[zoom>=9] {
+	polygon-fill: #ccc;
 }
 
-.borders.provinces.outline[zoom=11] { 
-  line-opacity: 0.1;
-  line-width: 5;  
-}
-
-#afgpak_extent[zoom>=7],
-.borders.provinces.outline[zoom>=12] { 
-  line-opacity: 0.1;
-  line-width: 6; 
-}
-
-#afgpak_extent[zoom<=6] { 
-  line-opacity: 1; 
-  line-width: 0.8; 
-}
-
-.borders.provinces[zoom<=6] { 
-  line-opacity: 0.2; 
-}
-
-.borders.provinces.inline[zoom>=8][zoom<=11] { 
-  line-opacity: 0.5; 
- }
-
-#afgpak_border[zoom>=8] { 
-  line-opacity: 0.2; 
-  line-width: 6; 
-}
-
-#afgpak_border_inline { 
-  line-opacity: 1; 
-  line-width: 1; 
-}
-
-#afgpak_border_inline[zoom<=7] { 
-  line-width: 0.8; 
- }
- 
 /* == ROADS =============================================== */
 
 /* ---- Motorways ----------------------------------------- */
-.roads.major[TYPE=motorway][zoom=7]           { line-color: #a2421e; line-width: 0.5; }
+.road.motorway[zoom>=7][TYPE='motorway']         { line-color: #e0714c; }
 
-.roads.major[TYPE=motorway][zoom=8]           { line-color: #873217; line-width: 1.0; }
-.roads.secondary[TYPE=motorway_link][zoom=8]  { line-color: #873217; line-width: 0.5; }
+.road.outline[zoom>=7][zoom<=10][TYPE='motorway']{ line-color: #873217; }
+.road.outline[zoom>=11][TYPE='motorway']         { line-color: #41150b; }
 
-.roads.major[TYPE=motorway][zoom=9]           { line-color: #873217; line-width: 1.5; }
-.roads.secondary[TYPE=motorway_link][zoom=9]  { line-color: #873217; line-width: 1.0; }
+.road.motorway[zoom=7][TYPE='motorway']          { line-width: 1.5; }
+.road.outline[zoom=7][TYPE='motorway']           { line-width: 0; }
 
-.roads.major[TYPE=motorway][zoom=10]          { line-color: #bf471e; line-width: 1.0; }
-.roads.outline[TYPE=motorway][zoom=10]        { line-color: #41150b; line-width: 2.5; }
-.roads.secondary[TYPE=motorway_link][zoom=10] { line-color: #bf471e; line-width: 0.5; }
-.roads.outline[TYPE=motorway_link][zoom=10]   { line-color: #41150b; line-width: 1.5; }
+.road.motorway[zoom=8][TYPE='motorway']          { line-width: 2; }
+.road.outline[zoom=8][TYPE='motorway']           { line-width: 0; }
+.road.secondary[zoom=8][TYPE='motorway_link']    { line-width: 1.5; }
+.road.outline[zoom=8][TYPE='motorway_link']      { line-width: 0; }
 
-.roads.major[TYPE=motorway][zoom=11]          { line-color: #ce4e22; line-width: 1.5; }
-.roads.outline[TYPE=motorway][zoom=11]        { line-color: #41150b; line-width: 3.0; }
-.roads.secondary[TYPE=motorway_link][zoom=11] { line-color: #ce4e22; line-width: 1.0; }
-.roads.outline[TYPE=motorway_link][zoom=11]   { line-color: #41150b; line-width: 2.5; }
+.road.motorway[zoom=9][TYPE='motorway']          { line-width: 2; }
+.road.outline[zoom=9][TYPE='motorway']           { line-width: 3.5; }
+.road.secondary[TYPE='motorway_link'][zoom=9]    { line-width: 1.5; }
+.road.outline[TYPE='motorway_link'][zoom=9]      { line-width: 3; }
 
-.roads.major[TYPE=motorway][zoom=12]          { line-color: #da562a; line-width: 2.0; }
-.roads.outline[TYPE=motorway][zoom=12]        { line-color: #41150b; line-width: 3.5; }
-.roads.secondary[TYPE=motorway_link][zoom=12] { line-color: #da562a; line-width: 1.0; }
-.roads.outline[TYPE=motorway_link][zoom=12]   { line-color: #41150b; line-width: 2.5; }
+.road.motorway[TYPE='motorway'][zoom=10]         { line-width: 3; }
+.road.outline[TYPE='motorway'][zoom=10]          { line-width: 4.5; }
+.road.secondary[TYPE='motorway_link'][zoom=10]   { line-width: 2; }
+.road.outline[TYPE='motorway_link'][zoom=10]     { line-width: 3.5; }
 
-.roads.major[TYPE=motorway][zoom=13]          { line-color: #dd633b; line-width: 4.0; }
-.roads.outline[TYPE=motorway][zoom=13]        { line-color: #41150b; line-width: 5.5; }
-.roads.secondary[TYPE=motorway_link][zoom=13] { line-color: #dd633b; line-width: 2.0; }
-.roads.outline[TYPE=motorway_link][zoom=13]   { line-color: #41150b; line-width: 3.5; }
+.road.motorway[TYPE='motorway'][zoom=11]         { line-width: 4; }
+.road.outline[TYPE='motorway'][zoom=11]          { line-width: 5.5; }
+.road.secondary[TYPE='motorway_link'][zoom=11]   { line-width: 3; }
+.road.outline[TYPE='motorway_link'][zoom=11]     { line-width: 4.5; }
 
-.roads.major[TYPE=motorway][zoom=14]          { line-color: #e0714c; line-width: 6.0; }
-.roads.outline[TYPE=motorway][zoom=14]        { line-color: #41150b; line-width: 7.5; }
-.roads.secondary[TYPE=motorway_link][zoom=14] { line-color: #e0714c; line-width: 3.0; }
-.roads.outline[TYPE=motorway_link][zoom=14]   { line-color: #41150b; line-width: 4.5; }
+.road.motorway[TYPE='motorway'][zoom=12]         { line-width: 5; }
+.road.outline[TYPE='motorway'][zoom=12]          { line-width: 6.5; }
+.road.secondary[TYPE='motorway_link'][zoom=12]   { line-width: 4; }
+.road.outline[TYPE='motorway_link'][zoom=12]     { line-width: 5.5; }
 
-.roads.major[TYPE=motorway][zoom=15]          { line-color: #e0714c; line-width: 8.5; }
-.roads.outline[TYPE=motorway][zoom=15]        { line-color: #41150b; line-width: 10;  }
-.roads.secondary[TYPE=motorway_link][zoom=15] { line-color: #e0714c; line-width: 4.0; }
-.roads.outline[TYPE=motorway_link][zoom=15]   { line-color: #41150b; line-width: 5.5; }
+.road.motorway[TYPE='motorway'][zoom=13]         { line-width: 6; }
+.road.outline[TYPE='motorway'][zoom=13]          { line-width: 7.5; }
+.road.secondary[TYPE='motorway_link'][zoom=13]   { line-width: 5; }
+.road.outline[TYPE='motorway_link'][zoom=13]     { line-width: 4.5; }
+
+.road.motorway[TYPE='motorway'][zoom=14]         { line-width: 8; }
+.road.outline[TYPE='motorway'][zoom=14]          { line-width: 9.5; }
+.road.secondary[TYPE='motorway_link'][zoom=14]   { line-width: 7; }
+.road.outline[TYPE='motorway_link'][zoom=14]     { line-width: 8.5; }
+
+.road.motorway[TYPE='motorway'][zoom=15]         { line-width: 9; }
+.road.outline[TYPE='motorway'][zoom=15]          { line-width: 10.5; }
+.road.secondary[TYPE='motorway_link'][zoom=15]   { line-width: 8; }
+.road.outline[TYPE='motorway_link'][zoom=15]     { line-width: 9.5; }
+
+.road.motorway[TYPE='motorway'][zoom>=16]        { line-width: 10; }
+.road.outline[TYPE='motorway'][zoom>=16]         { line-width: 11.5; }
+.road.secondary[TYPE='motorway_link'][zoom>=16]  { line-width: 9; }
+.road.outline[TYPE='motorway_link'][zoom>=16]    { line-width: 10.5; }
 
 /* ---- Trunks -------------------------------------------- */
-.roads.major[TYPE=trunk][zoom=7]             { line-color: #a2421e; line-width: 0.5; }
+.road.trunk[TYPE='trunk'][zoom>=7]               { line-color: #e68d6e; }
+.road.outline[TYPE='trunk'][zoom>=7]             { line-color: #CF5A34; }
 
-.roads.major[TYPE=trunk][zoom=8]             { line-color: #a2421e; line-width: 1.0; }
-.roads.secondary[TYPE=trunk_link][zoom=9]    { line-color: #a2421e; line-width: 0.5; }
+.road.trunk[TYPE='trunk'][zoom=7]                { line-width: 1.5; }
+.road.outline[TYPE='trunk'][zoom=7]              { line-width: 0; }
 
-.roads.major[TYPE=trunk][zoom=9]             { line-color: #a2421e; line-width: 1.5; }
-.roads.secondary[TYPE=trunk_link][zoom=9]    { line-color: #a2421e; line-width: 1.0; }
+.road.trunk[TYPE='trunk'][zoom=8]                { line-width: 2; }
+.road.outline[TYPE='trunk'][zoom=8]              { line-width: 0; }
+.road.trunk[TYPE='trunk_link'][zoom=9]           { line-width: 1; }
+.road.outline[TYPE='trunk_link'][zoom=9]         { line-width: 0; }
 
-.roads.major[TYPE=trunk][zoom=10]            { line-color: #d95a2b; line-width: 1.0; }
-.roads.outline[TYPE=trunk][zoom=10]          { line-color: #682710; line-width: 2.5; }
-.roads.secondary[TYPE=primary_link][zoom=10] { line-color: #d95a2b; line-width: 0.5; }
-.roads.outline[TYPE=primary_link][zoom=10]   { line-color: #682710; line-width: 1.5; }
+.road.trunk[TYPE='trunk'][zoom=9]                { line-width: 1.5; }
+.road.outline[TYPE='trunk'][zoom=9]              { line-width: 3; }
+.road.trunk[TYPE='trunk_link'][zoom=9]           { line-width: 1; }
+.road.outline[TYPE='trunk_link'][zoom=9]         { line-width: 2.5; }
 
-.roads.major[TYPE=trunk][zoom=11]            { line-color: #dc673c; line-width: 1.5; }
-.roads.outline[TYPE=trunk][zoom=11]          { line-color: #682710; line-width: 3.0; }
-.roads.secondary[TYPE=primary_link][zoom=11] { line-color: #dc673c; line-width: 0.5; }
-.roads.outline[TYPE=primary_link][zoom=11]   { line-color: #682710; line-width: 1.5; }
+.road.trunk[TYPE='trunk'][zoom=10]               { line-width: 2; }
+.road.outline[TYPE='trunk'][zoom=10]             { line-width: 3.5; }
+.road.trunk[TYPE='trunk_link'][zoom=10]          { line-width: 1; }
+.road.outline[TYPE='trunk_link'][zoom=10]        { line-width: 2.5; }
 
-.roads.major[TYPE=trunk][zoom=12]            { line-color: #e0734c; line-width: 2.0; }
-.roads.outline[TYPE=trunk][zoom=12]          { line-color: #682610; line-width: 3.5; }
-.roads.secondary[TYPE=primary_link][zoom=12] { line-color: #e0734c; line-width: 1.0; }
-.roads.outline[TYPE=primary_link][zoom=12]   { line-color: #682610; line-width: 2.5; }
+.road.trunk[TYPE='trunk'][zoom=11]               { line-width: 3; }
+.road.outline[TYPE='trunk'][zoom=11]             { line-width: 4.5; }
+.road.trunk[TYPE='trunk_link'][zoom=11]          { line-width: 2; }
+.road.outline[TYPE='trunk_link'][zoom=11]        { line-width: 3.5; }
 
-.roads.major[TYPE=trunk][zoom=13]            { line-color: #e3815d; line-width: 4.0; }
-.roads.outline[TYPE=trunk][zoom=13]          { line-color: #682610; line-width: 5.5; }
-.roads.secondary[TYPE=primary_link][zoom=13] { line-color: #e3815d; line-width: 2.0; }
-.roads.outline[TYPE=primary_link][zoom=13]   { line-color: #c35d2a; line-width: 3.5; }
+.road.trunk[TYPE='trunk'][zoom=12]               { line-width: 4; }
+.road.outline[TYPE='trunk'][zoom=12]             { line-width: 5.5; }
+.road.trunk[TYPE='trunk_link'][zoom=12]          { line-width: 3; }
+.road.outline[TYPE='trunk_link'][zoom=12]        { line-width: 4.5; }
 
-.roads.major[TYPE=trunk][zoom=14]            { line-color: #e68d6e; line-width: 6.0; }
-.roads.outline[TYPE=trunk][zoom=14]          { line-color: #682610; line-width: 7.5; }
-.roads.secondary[TYPE=primary_link][zoom=14] { line-color: #e68d6e; line-width: 3.0; }
-.roads.outline[TYPE=primary_link][zoom=14]   { line-color: #682610; line-width: 4.5; }
+.road.trunk[TYPE='trunk'][zoom=13]               { line-width: 5; }
+.road.outline[TYPE='trunk'][zoom=13]             { line-width: 6.5; }
+.road.trunk[TYPE='trunk_link'][zoom=13]          { line-width: 4; }
+.road.outline[TYPE='trunk_link'][zoom=13]        { line-width: 5.5; }
 
-.roads.major[TYPE=trunk][zoom=15]            { line-color: #e68d6e; line-width:  8.5; }
-.roads.outline[TYPE=trunk][zoom=15]          { line-color: #682610; line-width: 10.0; }
-.roads.secondary[TYPE=primary_link][zoom=15] { line-color: #e68d6e; line-width: 4.0; }
-.roads.outline[TYPE=primary_link][zoom=15]   { line-color: #682610; line-width: 5.5; }
+.road.trunk[TYPE='trunk'][zoom=14]               { line-width: 7; }
+.road.outline[TYPE='trunk'][zoom=14]             { line-width: 8.5; }
+.road.trunk[TYPE='trunk_link'][zoom=14]          { line-width: 6; }
+.road.outline[TYPE='trunk_link'][zoom=14]        { line-width: 7.5; }
+
+.road.trunk[TYPE='trunk'][zoom=15]               { line-width: 9; }
+.road.outline[TYPE='trunk'][zoom=15]             { line-width: 10.5; }
+.road.trunk[TYPE='trunk_link'][zoom=15]          { line-width: 8; }
+.road.outline[TYPE='trunk_link'][zoom=15]        { line-width: 9.5; }
+
+.road.trunk[TYPE='trunk'][zoom>=16]              { line-width: 10; }
+.road.outline[TYPE='trunk'][zoom>=16]            { line-width: 11.5; }
+.road.trunk[TYPE='trunk_link'][zoom>=16]         { line-width: 9; }
+.road.outline[TYPE='trunk_link'][zoom>=16]       { line-width: 10.5; }
 
 
 /* ---- Primary Roads ------------------------------------- */
-.roads.major[TYPE=primary][zoom=8]           { line-color: #c35d2a; line-width: 0.5; }
+.road.primary[TYPE='primary'][zoom>=8]           { line-color: #f6b47c; }
+.road.outline[TYPE='primary'][zoom>=8]           { line-color: #d47053; }
 
-.roads.major[TYPE=primary][zoom=9]           { line-color: #c35d2a; line-width: 1.0; }
-.roads.secondary[TYPE=primary_link][zoom=9]  { line-color: #c35d2a; line-width: 0.5; }
+.road.primary[TYPE='primary'][zoom=8]            { line-width: 1; }
+.road.outline[TYPE='primary'][zoom=8]            { line-width: 0; }
 
-.roads.major[TYPE=primary][zoom=10]          { line-color: #c35d2a; line-width: 1.5; }
-.roads.secondary[TYPE=primary_link][zoom=10] { line-color: #c35d2a; line-width: 1.0; }
+.road.primary[TYPE='primary'][zoom=9]            { line-width: 1; }
+.road.outline[TYPE='primary'][zoom=9]            { line-width: 2.5; }
+.road.primary[TYPE='primary_link'][zoom=9]       { line-width: 0.5; }
+.road.outline[TYPE='primary_link'][zoom=9]       { line-width: 2; }
 
-.roads.major[TYPE=primary][zoom=11]          { line-color: #f27c38; line-width: 1.0; }
-.roads.outline[TYPE=primary][zoom=11]        { line-color: #883618; line-width: 2.5; }
-.roads.secondary[TYPE=primary_link][zoom=11] { line-color: #f27c38; line-width: 0.5; }
-.roads.outline[TYPE=secondary_link][zoom=11] { line-color: #883618; line-width: 2.0; }
+.road.primary[TYPE='primary'][zoom=10]           { line-width: 1.5; }
+.road.outline[TYPE='primary'][zoom=10]           { line-width: 3; }
+.road.primary[TYPE='primary_link'][zoom=10]      { line-width: 1; }
+.road.outline[TYPE='primary_link'][zoom=10]      { line-width: 2.5; }
 
-.roads.major[TYPE=primary][zoom=12]          { line-color: #f38a4d; line-width: 2.0; }
-.roads.outline[TYPE=primary][zoom=12]        { line-color: #883618; line-width: 3.5; }
-.roads.secondary[TYPE=primary_link][zoom=12] { line-color: #f38a4d; line-width: 1.0; }
-.roads.outline[TYPE=secondary_link][zoom=12] { line-color: #883618; line-width: 2.5; }
+.road.primary[TYPE='primary'][zoom=11]           { line-width: 2; }
+.road.outline[TYPE='primary'][zoom=11]           { line-width: 3.5; }
+.road.primary[TYPE='primary_link'][zoom=11]      { line-width: 1; }
+.road.outline[TYPE='primary_link'][zoom=11]      { line-width: 2.5; }
 
-.roads.major[TYPE=primary][zoom=13]          { line-color: #f5965f; line-width: 4.0; }
-.roads.outline[TYPE=primary][zoom=13]        { line-color: #883618; line-width: 5.5; }
-.roads.secondary[TYPE=primary_link][zoom=13] { line-color: #f5965f; line-width: 2.0; }
-.roads.outline[TYPE=secondary_link][zoom=13] { line-color: #883618; line-width: 3.5; }
+.road.primary[TYPE='primary'][zoom=12]           { line-width: 3; }
+.road.outline[TYPE='primary'][zoom=12]           { line-width: 4.5; }
+.road.primary[TYPE='primary_link'][zoom=12]      { line-width: 2; }
+.road.outline[TYPE='primary_link'][zoom=12]      { line-width: 3.5; }
 
-.roads.major[TYPE=primary][zoom=14]          { line-color: #f6b47c; line-width: 6.0; }
-.roads.outline[TYPE=primary][zoom=14]        { line-color: #883618; line-width: 7.5; }
-.roads.secondary[TYPE=primary_link][zoom=14] { line-color: #f6b47c; line-width: 3.0; }
-.roads.outline[TYPE=secondary_link][zoom=14] { line-color: #883618; line-width: 4.5; }
+.road.primary[TYPE='primary'][zoom=13]           { line-width: 4; }
+.road.outline[TYPE='primary'][zoom=13]           { line-width: 5.5; }
+.road.primary[TYPE='primary_link'][zoom=13]      { line-width: 3; }
+.road.outline[TYPE='primary_link'][zoom=13]      { line-width: 4.5; }
 
-.roads.major[TYPE=primary][zoom=15]          { line-color: #f6b47c; line-width:  8.5; }
-.roads.outline[TYPE=primary][zoom=15]        { line-color: #883618; line-width: 10.0; }
-.roads.secondary[TYPE=primary_link][zoom=15] { line-color: #f6b47c; line-width: 4.0; }
-.roads.outline[TYPE=secondary_link][zoom=15] { line-color: #883618; line-width: 5.5; }
+.road.primary[TYPE='primary'][zoom=14]           { line-width: 7; }
+.road.outline[TYPE='primary'][zoom=14]           { line-width: 8.5; }
+.road.primary[TYPE='primary_link'][zoom=14]      { line-width: 6; }
+.road.outline[TYPE='primary_link'][zoom=14]      { line-width: 7.5; }
+
+.road.primary[TYPE='primary'][zoom=15]           { line-width: 9; }
+.road.outline[TYPE='primary'][zoom=15]           { line-width: 10.5; }
+.road.primary[TYPE='primary_link'][zoom=15]      { line-width: 8; }
+.road.outline[TYPE='primary_link'][zoom=15]      { line-width: 9.5; }
+
+.road.primary[TYPE='primary'][zoom>=16]          { line-width: 10; }
+.road.outline[TYPE='primary'][zoom>=16]          { line-width: 11.5; }
+.road.primary[TYPE='primary_link'][zoom>=16]     { line-width: 9; }
+.road.outline[TYPE='primary_link'][zoom>=16]     { line-width: 10.5; }
 
 
 /* ---- Secondary Roads ----------------------------------- */
-.roads.major[TYPE=secondary][zoom=9]           { line-color: #d98c34; line-width: 0.5; }
+.road.secondary[TYPE='secondary'][zoom>=9]       { line-color: #f6d69a; }
+.road.outline[TYPE='secondary'][zoom>=9]         { line-color: #DE7C26; }
 
-.roads.major[TYPE=secondary][zoom=10]          { line-color: #d98c34; line-width: 1.0; }
-.roads.secondary[TYPE=secondary_link][zoom=10] { line-color: #d98c34; line-width: 0.5; }
+.road.secondary[TYPE='secondary'][zoom=9]        { line-width: 1; }
+.road.outline[TYPE='secondary'][zoom=9]          { line-width: 2.5; }
 
-.roads.major[TYPE=secondary][zoom=11]          { line-color: #d98c34; line-width: 1.5; }
-.roads.secondary[TYPE=secondary_link][zoom=11] { line-color: #d98c34; line-width: 1.0; }
+.road.secondary[TYPE='secondary'][zoom=10]       { line-width: 1.0; }
+.road.outline[TYPE='secondary'][zoom=10]         { line-width: 2.5; }
+.road.secondary[TYPE='secondary_link'][zoom=10]  { line-width: 0.5; }
+.road.outline[TYPE='secondary_link'][zoom=10]    { line-width: 2; }
 
-.roads.major[TYPE=secondary][zoom=12]          { line-color: #f2c063; line-width: 1.0; }
-.roads.outline[TYPE=secondary][zoom=12]        { line-color: #c5630d; line-width: 2.5; }
-.roads.secondary[TYPE=secondary_link][zoom=12] { line-color: #f2c063; line-width: 0.5; }
-.roads.outline[TYPE=secondary_link][zoom=12]   { line-color: #c5630d; line-width: 1.5; }
+.road.secondary[TYPE='secondary'][zoom=11]       { line-width: 1.5; }
+.road.outline[TYPE='secondary'][zoom=11]         { line-width: 3; }
+.road.secondary[TYPE='secondary_link'][zoom=11]  { line-width: 1.0; }
+.road.outline[TYPE='secondary_link'][zoom=11]    { line-width: 2.5; }
 
-.roads.major[TYPE=secondary][zoom=13]          { line-color: #f3c875; line-width: 2.0; }
-.roads.outline[TYPE=secondary][zoom=13]        { line-color: #c5630d; line-width: 3.5; }
-.roads.secondary[TYPE=secondary_link][zoom=13] { line-color: #f3c875; line-width: 1.0; }
-.roads.outline[TYPE=secondary_link][zoom=13]   { line-color: #c5630d; line-width: 2.5; }
+.road.secondary[TYPE='secondary'][zoom=12]       { line-width: 2; }
+.road.outline[TYPE='secondary'][zoom=12]         { line-width: 3.5; }
+.road.secondary[TYPE='secondary_link'][zoom=12]  { line-width: 1; }
+.road.outline[TYPE='secondary_link'][zoom=12]    { line-width: 2.5; }
 
-.roads.major[TYPE=secondary][zoom=14]          { line-color: #f6d69a; line-width: 3.0; }
-.roads.outline[TYPE=secondary][zoom=14]        { line-color: #c5630d; line-width: 4.5; }
-.roads.secondary[TYPE=secondary_link][zoom=14] { line-color: #f6d69a; line-width: 2.0; }
-.roads.outline[TYPE=secondary_link][zoom=14]   { line-color: #c5630d; line-width: 3.5; }
+.road.secondary[TYPE='secondary'][zoom=13]       { line-width: 3; }
+.road.outline[TYPE='secondary'][zoom=13]         { line-width: 4.5; }
+.road.secondary[TYPE='secondary_link'][zoom=13]  { line-width: 2; }
+.road.outline[TYPE='secondary_link'][zoom=13]    { line-width: 3.5; }
 
-.roads.major[TYPE=secondary][zoom=15]          { line-color: #f6d69a; line-width: 6.5; }
-.roads.outline[TYPE=secondary][zoom=15]        { line-color: #c5630d; line-width: 8.0; }
-.roads.secondary[TYPE=secondary_link][zoom=15] { line-color: #f6d69a; line-width: 3.0; }
-.roads.outline[TYPE=secondary_link][zoom=15]   { line-color: #c5630d; line-width: 4.5; }
+.road.secondary[TYPE='secondary'][zoom=14]       { line-width: 5; }
+.road.outline[TYPE='secondary'][zoom=14]         { line-width: 6.5; }
+.road.secondary[TYPE='secondary_link'][zoom=14]  { line-width: 4; }
+.road.outline[TYPE='secondary_link'][zoom=14]    { line-width: 5.5; }
+
+.road.secondary[TYPE='secondary'][zoom=15]       { line-width: 7; }
+.road.outline[TYPE='secondary'][zoom=15]         { line-width: 8.5; }
+.road.secondary[TYPE='secondary_link'][zoom=15]  { line-width: 5; }
+.road.outline[TYPE='secondary_link'][zoom=15]    { line-width: 6.5; }
+
+.road.secondary[TYPE='secondary'][zoom>=16]      { line-width: 7; }
+.road.outline[TYPE='secondary'][zoom>=16]        { line-width: 9.5; }
+.road.secondary[TYPE='secondary_link'][zoom>=16] { line-width: 6; }
+.road.outline[TYPE='secondary_link'][zoom>=16]   { line-width: 7.5; }
 
 /* ---- Tertiary Roads ------------------------------------ */
-.roads.minor[TYPE=tertiary][zoom=10]   { line-color: #e3bd60; line-width: 0.5; }
+.road.tertiary[TYPE='tertiary'][zoom>=10]        { line-color: #f6e8ae; }
+.road.outline[TYPE='tertiary'][zoom>=10]         { line-color: #E6A329; }
 
-.roads.minor[TYPE=tertiary][zoom=11]   { line-color: #e3bd60; line-width: 1.0; }
+.road.tertiary[TYPE='tertiary'][zoom=10]         { line-width: 1; }
+.road.outline[TYPE='tertiary'][zoom=10]          { line-width: 2.5; }
 
-.roads.minor[TYPE=tertiary][zoom=12]   { line-color: #e3bd60; line-width: 1.5; }
+.road.tertiary[TYPE='tertiary'][zoom=11]         { line-width: 1.5; }
+.road.outline[TYPE='tertiary'][zoom=11]          { line-width: 3; }
 
-.roads.minor[TYPE=tertiary][zoom=13]   { line-color: #e3bd60; line-width: 2.0; }
+.road.tertiary[TYPE='tertiary'][zoom=12]         { line-width: 2; }
+.road.outline[TYPE='tertiary'][zoom=12]          { line-width: 3.5; }
 
-.roads.minor[TYPE=tertiary][zoom=14]   { line-color: #f6e8ae; line-width: 4.0; }
-.roads.outline[TYPE=tertiary][zoom=14] { line-color: #cc8a10; line-width: 5.5; }
+.road.tertiary[TYPE='tertiary'][zoom=13]         { line-width: 3.0; }
+.road.outline[TYPE='tertiary'][zoom=13]          { line-width: 4.5; }
 
-.roads.minor[TYPE=tertiary][zoom=15]   { line-color: #f8edc0; line-width: 6.0; }
-.roads.outline[TYPE=tertiary][zoom=15] { line-color: #cc8a10; line-width: 7.5; }
+.road.tertiary[TYPE='tertiary'][zoom=14]         { line-width: 5.0; }
+.road.outline[TYPE='tertiary'][zoom=14]          { line-width: 6.5; }
+
+.road.tertiary[TYPE='tertiary'][zoom=15]         { line-width: 7.0; }
+.road.outline[TYPE='tertiary'][zoom=15]          { line-width: 8.5; }
+
+.road.tertiary[TYPE='tertiary'][zoom>=16]        { line-width: 8.0; }
+.road.outline[TYPE='tertiary'][zoom>=16]         { line-width: 9.5; }
 
 /* ---- Minor Roads --------------------------------------- */
-.roads.minor[TYPE=residential][zoom=11],
-.roads.minor[TYPE=road][zoom=11],
-.roads.minor[TYPE=unclassified][zoom=11]   { line-color: #989898; line-width: 0.3; }
+.road.minor[TYPE='residential'][zoom>=11],
+.road.minor[TYPE='road'][zoom>=11],
+.road.minor[TYPE='unclassified'][zoom>=11]       { line-color: #aaa; }
 
-.roads.minor[TYPE=road][zoom=12],
-.roads.minor[TYPE=residential][zoom=12],
-.roads.minor[TYPE=unclassified][zoom=12]   { line-color: #a0a0a0; line-width: 0.6; }
+.road.minor[TYPE='residential'][zoom=11],
+.road.minor[TYPE='road'][zoom=11],
+.road.minor[TYPE='unclassified'][zoom=11]        { line-width: 1; }
 
-.roads.minor[TYPE=road][zoom=13],
-.roads.minor[TYPE=residential][zoom=13],
-.roads.minor[TYPE=unclassified][zoom=13]   { line-color: #a8a8a8; line-width: 1.2; }
+.road.minor[TYPE='residential'][zoom>=12],
+.road.minor[TYPE='road'][zoom>=12],
+.road.minor[TYPE='unclassified'][zoom>=12]       { line-color: #fff; }
 
-.roads.minor[TYPE=road][zoom=14],
-.roads.minor[TYPE=residential][zoom=14],
-.roads.minor[TYPE=unclassified][zoom=14]   { line-color: #ffffff; line-width: 2.0; }
-.roads.outline[TYPE=road][zoom=14],
-.roads.outline[TYPE=residential][zoom=14],
-.roads.outline[TYPE=unclassified][zoom=14] { line-color: #000000; line-width: 3.5; line-opacity: 0.2; }
+.road.outline[TYPE='residential'][zoom>=12],
+.road.outline[TYPE='road'][zoom>=12],
+.road.outline[TYPE='unclassified'][zoom>=12]     { line-color: #aaa; }
 
-.roads.minor[TYPE=road][zoom=15],
-.roads.minor[TYPE=residential][zoom=15],
-.roads.minor[TYPE=unclassified][zoom=15]   { line-color: #ffffff; line-width: 4.0; }
-.roads.outline[TYPE=road][zoom=15],
-.roads.outline[TYPE=residential][zoom=15],
-.roads.outline[TYPE=unclassified][zoom=15] { line-color: #000000; line-width: 5.5; line-opacity: 0.1; }
+.road.minor[TYPE='road'][zoom=12],
+.road.minor[TYPE='residential'][zoom=12],
+.road.minor[TYPE='unclassified'][zoom=12]        { line-width: 1; }
+.road.outline[TYPE='residential'][zoom=12],
+.road.outline[TYPE='road'][zoom=12],
+.road.outline[TYPE='unclassified'][zoom=12]      { line-width: 2.5; }
+
+.road.minor[TYPE='road'][zoom=13],
+.road.minor[TYPE='residential'][zoom=13],
+.road.minor[TYPE='unclassified'][zoom=13]        { line-width: 1.5; }
+.road.outline[TYPE='road'][zoom=13],
+.road.outline[TYPE='residential'][zoom=13],
+.road.outline[TYPE='unclassified'][zoom=13]      { line-width: 3; }
+
+.road.minor[TYPE='road'][zoom=14],
+.road.minor[TYPE='residential'][zoom=14],
+.road.minor[TYPE='unclassified'][zoom=14]        { line-width: 2.5; }
+.road.outline[TYPE='road'][zoom=14],
+.road.outline[TYPE='residential'][zoom=14],
+.road.outline[TYPE='unclassified'][zoom=14]      { line-width: 4; }
+
+.road.minor[TYPE='road'][zoom=15],
+.road.minor[TYPE='residential'][zoom=15],
+.road.minor[TYPE='unclassified'][zoom=15]        { line-width: 5.0; }
+.road.outline[TYPE='road'][zoom=15],
+.road.outline[TYPE='residential'][zoom=15],
+.road.outline[TYPE='unclassified'][zoom=15]      { line-width: 6.5; }
+
+.road.minor[TYPE='road'][zoom>=16],
+.road.minor[TYPE='residential'][zoom>=16],
+.road.minor[TYPE='unclassified'][zoom>=16]       { line-width: 6.0; }
+.road.outline[TYPE='road'][zoom>=16],
+.road.outline[TYPE='residential'][zoom>=16],
+.road.outline[TYPE='unclassified'][zoom>=16]     { line-width: 7.5; }
 
 /* ---- Pedestrian ---------------------------------------- */
-.roads.minor[TYPE=footway][zoom=13],
-.roads.minor[TYPE=pedestrian][zoom=13],
-.roads.minor[TYPE=path][zoom=13]   { line-width: 0.4; line-color: #fff; line-dasharray: 1, 2; line-opacity: 0.8; }
+.road.minor[TYPE='footway'][zoom=13],
+.road.minor[TYPE='pedestrian'][zoom=13],
+.road.minor[TYPE='path'][zoom=13]   { line-width: 0.4; line-color: #fff; line-dasharray: 1, 2; line-opacity: 0.8; }
 
-.roads.minor[TYPE=footway][zoom=14],
-.roads.minor[TYPE=pedestrian][zoom=14],
-.roads.minor[TYPE=path][zoom=14]   { line-width: 0.8; line-color: #fff; line-dasharray: 1, 2; line-opacity: 0.8; }
+.road.minor[TYPE='footway'][zoom=14],
+.road.minor[TYPE='pedestrian'][zoom=14],
+.road.minor[TYPE='path'][zoom=14]   { line-width: 0.8; line-color: #fff; line-dasharray: 1, 2; line-opacity: 0.8; }
 
-.roads.minor[TYPE=footway][zoom=15],
-.roads.minor[TYPE=pedestrian][zoom=15],
-.roads.minor[TYPE=path][zoom=15]   { line-width: 1.4; line-color: #fff; line-dasharray: 2, 4; line-opacity: 0.8; }
+.road.minor[TYPE='footway'][zoom=15],
+.road.minor[TYPE='pedestrian'][zoom=15],
+.road.minor[TYPE='path'][zoom=15]   { line-width: 1.4; line-color: #fff; line-dasharray: 2, 4; line-opacity: 0.8; }
 
-/* ---- Road Labels --------------------------------------- */
-.roads.major[TYPE=motorway][NAME!=NULL][zoom>=13] NAME,
-.roads.major[TYPE=trunk][NAME!=NULL][zoom>=13] NAME,
-.roads.major[TYPE=primary][NAME!=NULL][zoom>=13][NAME!="Herat-Kandahar-Kabul-Mazari Sharif-Sheberghan-Maymana-Herat ringroad?"] NAME,
-.roads.major[TYPE=secondary][NAME!=NULL][zoom>=15] NAME {
-  text-face-name: "Aller Regular";
-  text-size: 9;
-  text-fill: #000;
-  text-placement: line;
-  text-max-char-angle-delta: 20;
-  text-min-distance: 200;
-  text-spacing: 400;
-  text-halo-radius: 1;
-  text-halo-fill: #fff;
-}
 
 /* == LABELS ============================================== */
 
-#afghanistan_admin_labels[zoom>=8] PRV_NAME,
-#pakistan_admin_labels[scale-denominator<3000000][scale-denominator>=100000] PROV_NAME {
-  text-face-name: "Aller Regular";
+/* ---- Countries ----------------------------------------- */
+.label.country[zoom<=7] NAME {
+	text-allow-overlap: true;
+	text-face-name: "Aller Italic";
+	text-fill: #333;
+	text-halo-fill: #fff;
+	text-halo-radius: 1;
+	text-placement: point;
+}
+
+.label.country[zoom<=5] NAME  { text-size: 12; }
+
+.label.country[zoom=6] NAME   { text-size: 14; }
+
+.label.country[zoom=7] NAME   { text-size: 16; }
+ 
+
+/* ---- Provincial ---------------------------------------- */
+#afghanistan-label-province[zoom>=6] Prov_34_Na,
+#pakistan-label-province[zoom>=6] PROV_NAME {
+  text-face-name: "Aller Italic";
   text-size: 10;
-  text-fill: #000;
+  text-fill: #333;
   text-placement: point;
   text-halo-radius: 1; 
   text-halo-fill: #fff; 
@@ -315,8 +422,74 @@ Map {
   text-avoid-edges: false;
 }
 
-#afghanistan_admin_labels[zoom>=9][zoom<=10] PRV_NAME,
-#pakistan_admin_labels[zoom>=9][zoom<=10] PROV_NAME { text-size: 12; }
+#afghanistan-label-province[zoom=7] Prov_34_Na,
+#pakistan-label-province[zoom=7] PROV_NAME  { text-size: 11; }
 
-#afghanistan_admin_labels[zoom>=11][zoom<=12] PRV_NAME,
-#pakistan_admin_labels[zoom>=11][zoom<=12] PROV_NAME { text-size: 14; }
+#afghanistan-label-province[zoom=8] Prov_34_Na,
+#pakistan-label-province[zoom=8] PROV_NAME  { text-size: 12; }
+
+#afghanistan-label-province[zoom=9] Prov_34_Na,
+#pakistan-label-province[zoom=9] PROV_NAME { text-size: 13; }
+
+#afghanistan-label-province[zoom=10] Prov_34_Na,
+#pakistan-label-province[zoom=10] PROV_NAME { text-size: 14; }
+
+#afghanistan-label-province[zoom=11] Prov_34_Na,
+#pakistan-label-province[zoom=11] PROV_NAME { text-size: 15; }
+
+#afghanistan-label-province[zoom=12] Prov_34_Na,
+#pakistan-label-province[zoom=12] PROV_NAME { text-size: 16; }
+
+/* ---- District ------------------------------------------ */
+.label.nwfp[zoom>=11] UC_NAME_EN,
+#afghanistan-label-district[zoom>=9] DIST_34_NA,
+#pakistan-label-district[zoom>=9] TEHSIL {
+  text-face-name: "Aller Regular";
+  text-fill: #000;
+  text-placement: point;
+  text-halo-radius: 1; 
+  text-halo-fill: #fff; 
+  text-size: 10;
+  text-wrap-width: 50;
+  text-avoid-edges: false;
+}
+
+/*.label.nwfp UC_NAME_EN,
+#afghanistan-label-district[zoom=10] DIST_34_NA,
+#pakistan-label-district[zoom=10] TEHSIL { text-size: 11; }
+
+.label.nwfp UC_NAME_EN,
+#afghanistan-label-district[zoom=11] DIST_34_NA,
+#pakistan-label-district[zoom=11] TEHSIL { text-size: 12; }
+
+.label.nwfp UC_NAME_EN,
+#afghanistan-label-district[zoom=12] DIST_34_NA,
+#pakistan-label-district[zoom=12] TEHSIL { text-size: 13; }
+
+.label.nwfp UC_NAME_EN,
+#afghanistan-label-district[zoom=13] DIST_34_NA,
+#pakistan-label-district[zoom=13] TEHSIL { text-size: 14; }
+
+.label.nwfp UC_NAME_EN,
+#afghanistan-label-district[zoom=14] DIST_34_NA,
+#pakistan-label-district[zoom=14] TEHSIL { text-size: 15; }*/
+
+/* ---- Roadis -------------------------------------------- */
+.road.label[TYPE='motorway'][zoom>=9] NAME,
+.road.label[TYPE='trunk'][zoom>=9] NAME,
+.road.label[TYPE='primary'][zoom>=10] NAME,
+.road.label[TYPE='secondary'][zoom>=14] NAME,
+.road.label[TYPE='tertiary'][zoom>=15] NAME {
+  text-face-name: "DejaVu Sans Book";
+  text-size: 9;
+  text-fill: #000;
+	text-halo-fill: #fff;
+	text-halo-radius: 1;
+  text-placement: line;
+  text-max-char-angle-delta: 20;
+  text-min-distance: 200;
+  text-spacing: 400;
+}
+
+/* ---- NWFP ---------------------------------------------- */
+.border.nwfp { line-color: #f00; line-opacity: 0.5; line-width: 0.5; }

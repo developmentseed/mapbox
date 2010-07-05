@@ -1,4 +1,4 @@
-AFGHANISTAN-PAKISTAN ROADS
+AFGHANISTAN & PAKISTAN
 
 == PREREQUISITES ==========================================
 
