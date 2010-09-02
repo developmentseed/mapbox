@@ -3,8 +3,6 @@
 
 <!DOCTYPE Map[
   <!-- ENTITY DEFINITIONS -->
-  <!-- You can save keystrokes by entering your common DB info here, then   -->
-  <!-- putting  "&db_info;" (without the quotes) in the layer definition    -->
 
   <!-- COMMON PROJECTIONS -->
   <!-- 900913 (Google) - used by OSM, Google Maps -->
@@ -12,8 +10,25 @@
   <!-- EPSG:4326 (WGS84) - commonly used for shapefiles -->
   <!ENTITY srs4326 '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'>
 
-  <!-- DATABASE SETTINGS -->
-  <!ENTITY db_info '
+]>
+
+<Map srs="&srs900913;" minimum_version="0.7.1">
+
+  <!-- CASCADENIK STYLESHEETS -->
+  <Stylesheet src='base.mss' />
+
+  <Datasource name='shp'>
+    <Parameter name='base'>shapfiles_dir</Parameter>
+    <Parameter name='type'>shape</Parameter>
+  </Datasource>
+
+  <Datasource name='tif'>
+    <Parameter name='base'>geotiffs_dir</Parameter>
+    <Parameter name='type'>gdal</Parameter>
+    <Parameter name='format'>tiff</Parameter>
+  </Datasource>
+
+  <Datasource name='pgis'>
     <Parameter name="type">postgis</Parameter>
     <Parameter name="password">your-password</Parameter>
     <Parameter name="host">localhost</Parameter>
@@ -23,20 +38,13 @@
     <Parameter name="estimate_extent">true</Parameter>
     <Parameter name="geometry_field">way</Parameter>
     <Parameter name="srid">900913</Parameter>
-    '>
-]>
-
-<Map srs="&srs900913;" minimum_version="0.7.0">
-
-  <!-- CASCADENIK STYLESHEETS -->
-  <Stylesheet src='base.mss' />
+  </Datasource>
 
   <!-- TEMPLATE LAYER: SHAPEFILE -->
   <!-- 
   <Layer class="shapefile" srs="&srs4326;">
-    <Datasource>
-      <Parameter name="file">dir/shapefile</Parameter>
-      <Parameter name="type">shape</Parameter>
+    <Datasource base='shp'>
+      <Parameter name="file">shapefile</Parameter>
     </Datasource>
   </Layer>
   -->
@@ -44,8 +52,7 @@
   <!-- TEMPLATE LAYER: POSTGIS -->
   <!--
   <Layer class="postgis" srs="&srs900913;">
-    <Datasource>
-      &db_info;
+    <Datasource base='pgis'>
       <Parameter name="table"><![CDATA[
         ( SELECT * FROM table
           WHERE "attribute" = 'value'
@@ -76,10 +83,8 @@
   
   <Layer class="gdal" srs="&srs900913;">
     <StyleName>GDAL Layer</StyleName>
-    <Datasource>
-      <Parameter name="file">dir/geo.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
-      <Parameter name="type">gdal</Parameter>
+    <Datasource base='tif'>
+      <Parameter name="file">geo.tif</Parameter>
     </Datasource>
   </Layer>
   -->
