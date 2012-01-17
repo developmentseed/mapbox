@@ -1,4 +1,4 @@
 # OSM Bright
 
-This Cascadenik stylesheet has moved to its own repository:
-https://github.com/developmentseed/osm-bright/
+This stylesheet has moved to its own repository:
+https://github.com/mapbox/osm-bright/
